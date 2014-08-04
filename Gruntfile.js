@@ -218,19 +218,16 @@ module.exports = function (grunt) {
         },
         
         watch: {
+            options: {
+                livereload: true
+            },
             build: {
                 files: ['src/**'],
-                tasks: ['build'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['build']
             },
             kitchen: {
                 files: ['kitchen-sink/jade/**', 'kitchen-sink/less/**'],
-                tasks: ['jade:kitchen', 'less:kitchen'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['jade:kitchen', 'less:kitchen']
             },
             examples: {
                 files: [
@@ -238,20 +235,18 @@ module.exports = function (grunt) {
                     'examples/split-view/jade/**', 'examples/split-view/less/**',
                     'examples/split-view-panel/jade/**', 'examples/split-view-panel/less/**'
                 ],
-                tasks: ['jade:examples', 'less:examples'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['jade:examples', 'less:examples']
             },
             apps: {
                 files: [
                     'apps/weather7/jade/**', 'apps/weather7/less/**',
                     'apps/todo7/jade/**', 'apps/todo7/less/**',
                 ],
-                tasks: ['jade:apps', 'less:apps'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['jade:apps', 'less:apps']
+            },
+            docs: {
+                files: ['docs/jade/*.jade'],
+                tasks: ['jade:docs']
             }
         },
         jade: {
@@ -328,6 +323,18 @@ module.exports = function (grunt) {
                         ext: '.html'
                     },
                 ]
+            },
+            docs: {
+                options: {
+                    pretty: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'docs/jade/',
+                    src: ['*.jade'],
+                    dest: 'docs/',
+                    ext: '.html'
+                }]
             }
         },
         copy: {
