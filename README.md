@@ -5,82 +5,51 @@
 Framework7
 ==========
 
-Full Featured HTML Framework For Building iOS7 Apps
 
-## Attention!
+# 一 环境
 
-Framework7 is on early development stage, so many things may be changed and sorted in a short time.
+## 环境安装
 
-## Getting Started
-  * Clone/download this repo
-  * Start building your App from changing Kitchen Sink, or from a clean template from `dist/` folder
+F7使用Grunt编译代码，如果你没有使用过，请参考这里 [grunt getting started](http://gruntjs.com/getting-started)。在安装Grunt之前你可能还需要安装nodejs环境。
 
-## Server
+Grunt安装完成之后，在根目录下执行 `npm install` 即可。
 
-Because Framework7 uses Ajax for navigation between pages you will need a server. So to make it work you should put dist folder (or Kitchen Sink) on a server. Or, as an option, you may use Grunt's server. Just run:
+## 使用Grunt
 
-```
-$ grunt server
-```
+grunt 中配置了如下几个任务：
 
-  * Kitchen Sink will be available on `http://localhost:3000/kitchen-sink/`
-  * Dist - on `http://localhost:3000/dist/`
+* `grunt` 默认任务，会编译js,css和示例到build目录下，等价于 `grunt build`
+* `grunt watch` watch模式，开发的时候启动这个命令即可
+* `grunt test` 运行测试
+* `grunt server` 启动服务器,启动之后可以直接访问 [http://localhost:3000/docs/](http://localhost:3000/docs/)
+* `grunt kitchen` 编译 kitchen
+* `grunt apps` 编译 apps
+* `grunt examples` 编译 examples
 
-## Kitchen Sink
 
-Framework7' JS and CSS files in Kitchen Sink are temporary linked to `build/` to make development process easier on this stage. So to make it work you need to build Framework7 (see Build section) or to re-link JS and CSS files to `dist/` folder.
+# 二 文件结构说明
 
-## Dist vs Build versions
+下面是重要的文件说明
 
-On production use files (JS and CSS) only from `dist/` folder, there will be the most stable versions, `build/` folder is only for development purpose
+* Framework7/: 根目录
+  * src/: 源码
+    * img/: 图片
+    * js/: js源码
+    * less/: 使用less编写的css源码
+    * my-app/: 示例使用的js和css
+    * templates/: 示例的html模板，使用jade编写
 
-## Build
+  * build/: 编译后css、js、图片和示例，用来发布到CDN，用在生产环境
+    * css/: 编译后的css文件
+    * js/: 编译后的js文件
+    * img/: 图片
+    * *.html: 示例
 
-Framework7 uses `grunt` to build a development (build) and dist versions.
+  * docs/:  文档
+    * templates/：使用jade编写的文档模板
+    * docs-demos/:  文档中使用的示例，用在文档右侧的设备模拟器中
 
-First you need to have `grunt-cli` which you should install globally.
-
-```
-$ npm install -g grunt-cli
-```
-
-Then install all dependencies, in repo's root:
-
-```
-$ npm install
-$ grunt build
-```
-
-The result is available in `build/` folder.
-
-## Dist/Release
-
-After you have made build:
-
-```
-$ grunt dist
-```
-
-Distributable version will available in `dist/` folder.
-
-## Contributing
-
-All changes should be commited to `src/` files. Framework7 uses LESS for CSS compliations, and concatenated JS files (look at Gruntfile.js for concat files order)
-
-If you want to help in Framework7 development and make it event better visit this page: http://www.idangero.us/framework7/contribute/
-
-## Forum
-
-If you have questions about Framework7 or want to help others you are welcome to special forum at http://www.idangero.us/framework7/forum/
-
-## Docs
-
-Documentation available at http://idangero.us/framework7/docs/
-
-## Tutorials
-
-Tutorials available at http://idangero.us/framework7/tutorials/
-
-## Showcase
-
-Appstore apps made with Framework7: http://idangero.us/framework7/showcase/
+  * apps/: 示例
+  * examples/: 示例
+  * kitchen-sink/: 示例
+  * Gruntfile.js: grunt配置文件
