@@ -217,7 +217,7 @@ module.exports = function (grunt) {
         
         watch: {
             options: {
-                livereload: true
+                livereload: 34567
             },
             build: {
                 files: ['src/**'],
@@ -329,7 +329,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'docs/jade/',
-                    src: ['*.jade'],
+                    src: ['*.jade', '!_*.jade'],
                     dest: 'docs/',
                     ext: '.html'
                 }]
