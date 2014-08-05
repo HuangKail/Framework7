@@ -96,16 +96,17 @@ module.exports = function (grunt) {
                     'build/css/framework7.rtl.css' : ['src/less/framework7.rtl.less']
                 }
             },
-            dist: {
+            buildMin: {
                 options: {
                     paths: ['less'],
-                    cleancss: true
+                    compress: true,
                 },
                 files: {
-                    'dist/css/framework7.min.css' : ['src/less/framework7.less'],
-                    'dist/css/framework7.rtl.min.css' : ['src/less/framework7.rtl.less'],
+                    'build/css/framework7.min.css' : ['src/less/framework7.less'],
+                    'build/css/framework7.rtl.min.css' : ['src/less/framework7.rtl.less']
                 }
             },
+            
             kitchen: {
                 options: {
                     paths: ['kitchen-sink/less/'],
@@ -192,19 +193,16 @@ module.exports = function (grunt) {
             css_build: {
                 src: ['build/css/<%= framework7.filename %>.css'],
                 dest: 'build/css/<%= framework7.filename %>.css'
-            },
-            css_dist: {
-                src: ['dist/css/<%= framework7.filename %>.min.css'],
-                dest: 'dist/css/<%= framework7.filename %>.min.css'
-            },
+            }
+            
         },
         uglify: {
             options: {
                 banner: '<%= banner %>'
             },
-            dist: {
-                src: ['dist/js/<%= framework7.filename %>.js'],
-                dest: 'dist/js/<%= framework7.filename %>.min.js',
+            build: {
+                src: ['build/js/<%= framework7.filename %>.js'],
+                dest: 'build/js/<%= framework7.filename %>.min.js',
             },
         },
         jshint: {
@@ -359,17 +357,7 @@ module.exports = function (grunt) {
                         dest: 'build/js/'
                     }
                 ]
-            },
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'build/',
-                        src: ['**'],
-                        dest: 'dist/'
-                    }
-                ]
-            },
+            }
         },
     });
 
@@ -388,26 +376,13 @@ module.exports = function (grunt) {
     this.registerTask('build', 'Builds a development version of <%= pkg.name %>', [
         'concat:js',
         'less:build',
+        'less:buildMin',
         'concat:css_build',
         'jshint',
         'copy:build',
         'jade:build',
+        'uglify:build'
     ]);
-
-    // Release
-    this.registerTask('dist', 'Builds a distributable version of <%= pkg.name %>', [
-        'concat:js',
-        'less:build',
-        'less:dist',
-        'concat:css_build',
-        'concat:css_dist',
-        'jshint',
-        'copy:build',
-        'jade:build',
-        'copy:dist',
-        'uglify:dist'
-    ]);
-
 
     // Kitchen Sink
     this.registerTask('kitchen', 'Builds a kithcen sink', [
