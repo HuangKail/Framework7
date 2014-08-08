@@ -381,6 +381,7 @@ module.exports = function (grunt) {
         'jshint',
         'copy:build',
         'jade:build',
+        'jade:docs',
         'uglify:build'
     ]);
 
