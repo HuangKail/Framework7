@@ -1,0 +1,176 @@
+extend _base
+
+block content
+    div.docs-demo-device
+        iframe(width="320" height="548" frameborder="0" scrolling="on")
+        div.fade-overlay
+    div.docs-wrap
+        include _sidenav
+        div.docs-content.with-device
+            div.full-width
+                h1 手风琴／折叠 Accordion / Collapsible
+
+                h2#accordion-layout 手风琴布局（Accordion Layout）
+
+                p 通常，手风琴布局可以这样实现:
+                pre
+                    code.
+                        &lt;div class="accordion-list"&gt;
+                            &lt;div class="accordion-item"&gt;
+                                &lt;div class="accordion-item-toggle"&gt;...&lt;/div&gt;
+                                &lt;div class="accordion-item-content"&gt;...&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="accordion-item accordion-item-expanded"&gt;
+                                &lt;div class="accordion-item-toggle"&gt;...&lt;/div&gt;
+                                &lt;div class="accordion-item-content"&gt;...&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="accordion-item"&gt;
+                                &lt;div class="accordion-item-toggle"&gt;...&lt;/div&gt;
+                                &lt;div class="accordion-item-content"&gt;...&lt;/div&gt;
+                            &lt;/div&gt;
+                            ...
+                        &lt;/div&gt;
+
+                p 上面的代码:
+
+                ul.
+                    <li><code>accordion-list</code> - 多个手风琴元素的列表. 可选
+                        <ul>
+                            <li><code>accordion-item</code> - 单个手风琴元素. 必须
+                            <ul>
+                                <li><code>accordion-item-toggle</code> - 用来展开／折叠手风琴元素内容的开关. 必须</li>
+                                <li><code>accordion-item-content</code> - 隐藏的手风琴元素的内容. 必须</li>
+                            </ul>
+                            </li>
+                            <li><code>accordion-item-expanded</code> - 展开的手风琴元素</li>
+                        </ul>
+                    </li>
+
+                h2#collapsible-layout 折叠布局（Collapsible Layout）
+                p 如果你希望独立的可折叠元素，你可以不使用"accordion-list"包裹元素:
+
+                pre
+                    code.
+                        &lt;!-- Single collapsible element --&gt;
+                        &lt;div class="accordion-item"&gt;
+                            &lt;div class="accordion-item-toggle"&gt;...&lt;/div&gt;
+                            &lt;div class="accordion-item-content"&gt;...&lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;!-- Another separate collapsible element --&gt;
+                        &lt;div class="accordion-item"&gt;
+                            &lt;div class="accordion-item-toggle"&gt;...&lt;/div&gt;
+                            &lt;div class="accordion-item-content"&gt;...&lt;/div&gt;
+                        &lt;/div&gt;
+
+                h2#accordion-list-view 手风琴列表视图（Accordion List View）
+                p 如果你希望给列表视图加上手风琴布局，你应该使用"item-link"元素而不是"accordion-toggle"元素:
+
+                pre
+                    code.
+                        &lt;div class="list-block accordion-list"&gt;
+                            &lt;ul&gt;
+                                &lt;li class="accordion-item"&gt;
+                                    &lt;a href="" class="item-link item-content"&gt;
+                                        &lt;div class="item-inner"&gt;
+                                            &lt;div class="item-title"&gt;Item 1&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/a&gt;
+                                    &lt;div class="accordion-item-content"&gt;Item 1 content ...&lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li class="accordion-item"&gt;
+                                    &lt;a href="" class="item-link item-content"&gt;
+                                        &lt;div class="item-inner"&gt;
+                                            &lt;div class="item-title"&gt;Item 2&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/a&gt;
+                                    &lt;div class="accordion-item-content"&gt;Item 2 content ...&lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+
+            h2(data-device-preview="./docs-demos/accordion.html")#example 示例
+            pre
+                code.
+                    &lt;!-- List View --&gt;
+                    &lt;div class="content-block-title"&gt;List View Accordion&lt;/div&gt;
+                    &lt;div class="list-block accordion-list"&gt;
+                      &lt;ul&gt;
+                        &lt;li class="accordion-item"&gt;&lt;a href="#" class="item-content item-link"&gt;
+                            &lt;div class="item-inner"&gt;
+                              &lt;div class="item-title"&gt;Item 1&lt;/div&gt;
+                            &lt;/div&gt;&lt;/a&gt;
+                          &lt;div class="accordion-item-content"&gt;
+                            &lt;div class="content-block"&gt;
+                              &lt;p&gt;Item 1 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="accordion-item"&gt;&lt;a href="#" class="item-content item-link"&gt;
+                            &lt;div class="item-inner"&gt;
+                              &lt;div class="item-title"&gt;Item 2&lt;/div&gt;
+                            &lt;/div&gt;&lt;/a&gt;
+                          &lt;div class="accordion-item-content"&gt;
+                            &lt;div class="content-block"&gt;
+                              &lt;p&gt;Item 2 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/li&gt;
+                        ...
+                      &lt;/ul&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- Separate collapsibles - omit "accordion-list" class--&gt;
+                    &lt;div class="content-block-title"&gt;Separate Collapsibles&lt;/div&gt;
+                    &lt;div class="list-block"&gt;
+                      &lt;ul&gt;
+                        &lt;li class="accordion-item"&gt;&lt;a href="#" class="item-content item-link"&gt;
+                            &lt;div class="item-inner"&gt;
+                              &lt;div class="item-title"&gt;Item 1&lt;/div&gt;
+                            &lt;/div&gt;&lt;/a&gt;
+                          &lt;div class="accordion-item-content"&gt;
+                            &lt;div class="content-block"&gt;
+                              &lt;p&gt;Item 1 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li class="accordion-item"&gt;&lt;a href="#" class="item-content item-link"&gt;
+                            &lt;div class="item-inner"&gt;
+                              &lt;div class="item-title"&gt;Item 2&lt;/div&gt;
+                            &lt;/div&gt;&lt;/a&gt;
+                          &lt;div class="accordion-item-content"&gt;
+                            &lt;div class="content-block"&gt;
+                              &lt;p&gt;Item 2 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/li&gt;
+                        ...
+                      &lt;/ul&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- Custom Accordion --&gt;
+                    &lt;div class="content-block-title"&gt;Custom Accordion&lt;/div&gt;
+                    &lt;div class="content-block accordion-list custom-accordion"&gt;
+                      &lt;div class="accordion-item"&gt;
+                        &lt;div class="accordion-item-toggle"&gt;
+                          &lt;i class="icon icon-plus"&gt;+&lt;/i&gt;
+                          &lt;i class="icon icon-minus"&gt;-&lt;/i&gt;
+                          &lt;span&gt;Item 1&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="accordion-item-content"&gt;
+                          &lt;p&gt;Item 1 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class="accordion-item"&gt;
+                        &lt;div class="accordion-item-toggle"&gt;
+                          &lt;i class="icon icon-plus"&gt;+&lt;/i&gt;
+                          &lt;i class="icon icon-minus"&gt;-&lt;/i&gt;
+                          &lt;span&gt;Item 2&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="accordion-item-content"&gt;
+                          &lt;p&gt;Item 2 content. Lorem ipsum dolor sit amet...&lt;/p&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      ...
+                    &lt;/div&gt;
+
